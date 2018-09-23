@@ -7,11 +7,13 @@ module Lib
     , findWord
     , findWords
     , skew
+    ,diagonalize
     ) where
 
 import           Data.List  (isInfixOf, transpose)
 import           Data.Maybe (catMaybes)
 
+type Grid = [String]
 
 showGrid :: [String] ->  IO()
 showGrid grid = putStrLn (unlines grid)
@@ -20,13 +22,13 @@ showGrid grid = putStrLn (unlines grid)
 findInLine :: String -> String -> Bool
 findInLine = isInfixOf
 
-skew :: [String] -> [String]
+skew :: Grid -> Grid
 skew [] = []
 skew (l:ls) = l : skew (map indent ls)
         where indent line = '_' : line
 
 
-gridLines :: [String] -> [String]
+gridLines :: Grid -> Grid
 gridLines grid =
             let horizontal = grid
                 vertical = transpose grid
