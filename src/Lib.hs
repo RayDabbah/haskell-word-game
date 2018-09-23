@@ -37,12 +37,13 @@ gridLines grid =
                 lines =  horizontal ++ vertical ++ diagonal1 ++ diagonal2
              in lines ++ map reverse lines
 
+diagonalize :: Grid -> Grid
 diagonalize = transpose . skew
 
-findWord :: [String] -> String -> Maybe String
+findWord :: Grid -> String -> Maybe String
 findWord grid word =
         let lines = gridLines grid
-            found = or $ map (findInLine word) lines
+            found = any (findInLine word) lines
          in   if found then Just word else Nothing
 
 findWords grid words =
