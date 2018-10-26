@@ -4,4 +4,4 @@ import Lib
 import Data
 
 main ::  IO ()
-main = putStrLn "hi"
+main = putStrLn "hi! This is a MAJOR Haskell program!"
